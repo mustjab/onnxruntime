@@ -6,6 +6,10 @@
 #include <mutex>
 #include <sstream>
 #ifdef __has_include
+// libc++ provides a <stacktrace> header that passes __has_include and defines
+// __cpp_lib_stacktrace, but it is a stub that does not contain a working
+// std::stacktrace implementation (as of libc++ 18). Including it leads to
+// compile errors, so we exclude libc++ entirely.
 #if __has_include(<stacktrace>) && !defined(_LIBCPP_VERSION)
 #include <stacktrace>
 #endif

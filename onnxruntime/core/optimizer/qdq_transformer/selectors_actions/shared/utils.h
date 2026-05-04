@@ -46,6 +46,9 @@ struct OpVersionsAndSelector {
 // class that manages a set of node group selectors
 class Selectors {
  public:
+  // Constructor/destructor defined out-of-line so NodeGroupSelector is
+  // complete when unique_ptr<NodeGroupSelector> is destroyed (required
+  // by libc++, which checks completeness at the point of the destructor).
   Selectors();
   ~Selectors();
 
