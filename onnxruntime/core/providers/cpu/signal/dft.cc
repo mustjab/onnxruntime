@@ -16,7 +16,7 @@
 #include "core/providers/cpu/signal/utils.h"
 #include "core/util/math_cpuonly.h"
 #include "Eigen/src/Core/Map.h"
-#include "core/common/math_constants.h"
+#include <numbers>
 
 namespace onnxruntime {
 
@@ -80,7 +80,7 @@ static inline T bit_reverse(T num, unsigned significant_bits) {
 template <typename T>
 static T compute_angular_velocity(size_t number_of_samples, bool inverse) {
   // Calculate fundamental angular velocity
-  static constexpr T pi = static_cast<T>(M_PI);
+  static constexpr T pi = std::numbers::pi_v<T>;
   static constexpr T tau = 2 * pi;
   T inverse_switch = inverse ? 1.f : -1.f;
   T angular_velocity = inverse_switch * tau / number_of_samples;
